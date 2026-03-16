@@ -1,23 +1,655 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- JSON-LD Structured Data for Service Snippet Optimization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "자동차 장기리스 비교 견적 서비스",
+      "serviceType": "신차/중고차 장기 리스 및 렌트 비교 플랫폼",
+      "provider": {
+        "@type": "Organization",
+        "name": "장기리스 견적닷컴",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스"
+        },
+        "logo": "https://yourdomain.com/images/logo.png"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "description": "2026년 최신 신차 장기리스 견적을 비교하고, 개인 및 법인 사업자에게 최적화된 맞춤형 장기리스 상품을 추천합니다. 초기 비용 없는 리스부터 보증금 조건까지 다양한 혜택을 제공합니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "장기리스 상품 카탈로그",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "신차 장기리스 (개인/법인)"
+            },
+            "description": "최신 모델 신차를 2~5년 기간 동안 이용하는 리스 상품. 사업자 세금 절감 효과 극대화."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "장기렌트 비교 서비스"
+            },
+            "description": "장기렌트와 리스의 장단점을 비교하여 고객에게 최적의 상품을 제안. 보험료 부담 없이 이용 가능."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "중고차 장기리스"
+            },
+            "description": "합리적인 가격으로 검증된 중고차를 리스하는 서비스. 신차 대비 저렴한 월 납입료."
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+      /* Reset and Base Styles */
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #f5f7fa; /* Light background for softer feel */
+        color: #333;
+        font-size: 16px;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff; /* Primary link color */
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      main {
+        max-width: 1100px; /* Wider content area */
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow effect */
+        border-radius: 12px;
+      }
+      h1, h2, h3, h4 {
+        color: #1a2a44; /* Dark blue/black for headings */
+        line-height: 1.4;
+      }
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        border-bottom: 2px solid #e0e6f0; /* Soft separator line */
+        padding-bottom: 0.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #007bff; /* Highlight color for subheadings */
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Header and Navigation */
+      header {
+        background-color: #1a2a44; /* Deep blue header */
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      header h1 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+      }
+      nav a:hover {
+        color: #f7b731; /* Accent yellow/gold hover color */
+      }
+
+      /* Layout Sections */
+      section {
+        margin-bottom: 3rem;
+      }
+      .visual-content {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+      }
+      .visual-content img {
+        width: 40%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .visual-content .text-content {
+        width: 60%;
+      }
+
+      /* Table Styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+      th, td {
+        padding: 1rem;
+        border: 1px solid #e0e6f0;
+        text-align: left;
+      }
+      th {
+        background-color: #e0f0ff; /* Light blue header */
+        color: #1a2a44;
+        font-weight: 700;
+        text-align: center;
+      }
+      td {
+        background-color: #ffffff;
+      }
+      .table-header {
+        background-color: #007bff !important;
+        color: white !important;
+        text-align: center;
+      }
+
+      /* Accordion Styles (FAQ) */
+      dl {
+        margin: 0;
+      }
+      dl dt {
+        background-color: #f0f4f8; /* Light gray accordion background */
+        color: #1a2a44;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        position: relative;
+      }
+      dl dt:hover {
+        background-color: #e0e6f0;
+      }
+      dl dd {
+        margin: 0;
+        padding: 1rem 1.5rem;
+        background-color: #ffffff;
+        border: 1px solid #e0e6f0;
+        border-top: none;
+        border-radius: 0 0 6px 6px;
+        display: none;
+        line-height: 1.6;
+      }
+      dl dt.active {
+        background-color: #007bff;
+        color: white;
+        border-radius: 6px 6px 0 0;
+      }
+      dl dt.active + dd {
+        display: block;
+      }
+      dl dt::after {
+        content: '+';
+        position: absolute;
+        right: 1rem;
+        font-size: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+      }
+      dl dt.active::after {
+        content: '-';
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      /* Call to Action (CTA) Button */
+      .cta-button {
+        display: block;
+        max-width: 300px;
+        margin: 2rem auto;
+        background-color: #ff6600; /* Vibrant orange for CTA */
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+      }
+      .cta-button:hover {
+        background-color: #e65c00;
+        transform: translateY(-2px);
+      }
+
+      /* Keyword Tags */
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .keyword-tags a {
+        background-color: #e0f0ff;
+        color: #007bff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .keyword-tags a:hover {
+        background-color: #b3d1ff;
+      }
+
+      /* Input Form Section */
+      .contact-form {
+        background-color: #f0f4f8;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-form label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      .contact-form input[type="text"],
+      .contact-form input[type="tel"],
+      .contact-form select {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 1rem;
+      }
+      .contact-form button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        transition: background-color 0.3s ease;
+      }
+      .contact-form button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #e0e6f0;
+        margin-top: 3rem;
+      }
+      .external-links {
+        margin-top: 1rem;
+      }
+      .external-links a {
+        margin: 0 10px;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>자동차 장기리스 가격비교 및 견적 전문 플랫폼</h1>
+        <p>복잡한 신차 리스, 전문가와 함께 가장 합리적인 조건으로 해결하세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">서비스 소개</a></li>
+                <li><a href="#comparison">리스/렌트 비교</a></li>
+                <li><a href="#price-guide">가격/견적 분석</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#contact">견적 문의</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Section 1: Introduction -->
+        <section id="intro">
+            <h2>2026년 신차 장기리스, 왜 '장기리스 견적닷컴'을 선택해야 할까요?</h2>
+            <div class="visual-content">
+                <div class="text-content">
+                    <p><strong>자동차장기리스</strong>는 초기 비용 부담을 최소화하고 매월 일정 금액으로 신차를 이용할 수 있는 합리적인 방법으로 널리 알려져 있습니다. 특히 2026년도에는 차량 구매 방식이 다양해지면서 신차 구입 시 장기리스나 장기렌트를 고려하는 분들이 늘고 있습니다. 저희 '장기리스 견적닷컴'은 수많은 캐피탈사와 제휴를 맺어 고객님께 맞는 최적의 <strong>자동차리스 가격</strong>을 찾아드리는 <strong>전문 업체</strong>입니다.</p>
+                    <p>저희는 단순히 <strong>장기리스 견적</strong>을 비교하는 것을 넘어, 고객님의 상황(개인, 개인사업자, 법인)에 따른 세금 혜택 분석, 보험료 절감 방안, 그리고 차량 유지보수 서비스까지 종합적으로 컨설팅해 드립니다. <strong>저렴한곳</strong>을 찾는 것도 중요하지만, 숨겨진 비용이나 복잡한 계약 조항을 피하고 투명한 <strong>신차 장기리스</strong> 계약을 진행하는 것이 장기적으로 볼 때 더 큰 혜택입니다.</p>
+                    <p><strong>내돈내산 후기</strong>를 참고하여 <strong>추천</strong> 상품을 찾으시는 분들이라면, 저희 플랫폼에서 다양한 리스 상품을 <strong>비교</strong>해 보세요. 2026년 신규 <strong>가입 혜택</strong>과 특별 <strong>할인</strong> 프로모션을 놓치지 마시고, 지금 바로 <strong>무료 견적</strong>을 신청하세요.</p>
+                </div>
+                <!-- Pexels Image for visual appeal -->
+                <img src="https://images.pexels.com/photos/1594916/pexels-photo-1594916.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="신차 장기리스 상담 이미지">
+            </div>
+
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#price-guide">자동차리스비용</a>
+                <a href="#comparison">장기렌트 차이점</a>
+                <a href="#price-guide">개인사업자 리스</a>
+                <a href="#price-guide">법인사업자 리스</a>
+                <a href="#comparison">장기리스 장점 단점</a>
+                <a href="#price-guide">장기리스 견적비교</a>
+                <a href="#price-guide">보증금 없는 장기리스</a>
+                <a href="#price-guide">장기리스 혜택</a>
+                <a href="#faq">장기리스 초기비용</a>
+                <a href="#faq">장기리스 중도해지</a>
+                <a href="#price-guide">장기리스 평균 금액</a>
+                <a href="#reviews">장기리스 내돈내산 후기</a>
+                <a href="#comparison">장기리스 vs 할부</a>
+                <a href="#price-guide">저렴한 장기리스 싼곳</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 2: Core Service Comparison (Lease vs. Rental vs. Purchase) -->
+        <section id="comparison">
+            <h2>자동차 장기리스 vs. 장기렌트 vs. 할부 구매: 장단점 비교</h2>
+            <p><strong>자동차장기리스</strong>를 고민하는 분들이 가장 궁금해하는 것은 바로 '장기렌트나 할부 구매와 어떤 차이점이 있는가'입니다. 각 방식별 <strong>장단점</strong>을 명확히 이해해야 본인에게 가장 유리한 선택을 할 수 있습니다. 아래 표를 통해 2026년 기준으로 주요 특징들을 비교해 보세요.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="table-header" colspan="4">자동차 이용 방식별 비교 (2026년 기준)</th>
+                    </tr>
+                    <tr>
+                        <th>구분</th>
+                        <th>장기리스 (Lease)</th>
+                        <th>장기렌트 (Rental)</th>
+                        <th>할부 구매 (Purchase)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>차량 번호판</strong></td>
+                        <td>일반 번호판 (하, 허, 호X)</td>
+                        <td>렌트 전용 번호판 (하, 허, 호)</td>
+                        <td>일반 번호판</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 비용</strong></td>
+                        <td>보증금 또는 선수금 필요 (무보증 리스 가능)</td>
+                        <td>보증금 또는 선수금 필요 (무보증 렌트 가능)</td>
+                        <td>차량 가격의 일부(선수금), 취등록세, 보험료 등</td>
+                    </tr>
+                    <tr>
+                        <td><strong>세금 혜택 (사업자)</strong></td>
+                        <td>월 리스료 전액 비용처리 가능 (연간 한도 1,500만원)</td>
+                        <td>월 렌트료 전액 비용처리 가능 (연간 한도 1,500만원)</td>
+                        <td>감가상각비, 유류비, 보험료 등 별도 처리 (복잡함)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보험 처리</strong></td>
+                        <td>개인 보험 가입 (경력 인정)</td>
+                        <td>렌트사 보험 가입 (보험료에 포함, 경력 단절)</td>
+                        <td>개인 보험 가입 (경력 인정)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>계약 만기 시</strong></td>
+                        <td>반납 또는 인수 선택 (잔존가치에 따라 결정)</td>
+                        <td>반납 또는 인수 선택</td>
+                        <td>본인 소유</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="visual-content">
+                <div class="text-content">
+                    <h3>장기리스의 주요 장점과 단점</h3>
+                    <h4>장점 (Benefits)</h4>
+                    <ul>
+                        <li><strong>세금 절감 효과:</strong> 개인사업자나 법인사업자의 경우 월 리스료 전액을 손비 처리하여 절세 효과를 극대화할 수 있습니다. 특히 2026년 세법 기준 연간 1,500만원 한도로 비용 처리가 가능합니다.</li>
+                        <li><strong>초기 비용 절감:</strong> 차량 구매 시 필요한 취득세, 등록세, 공채 등 초기 비용 부담이 없으며, 무보증 리스 상품 선택 시 초기 자금 지출이 전혀 없습니다.</li>
+                        <li><strong>유연한 차량 관리:</strong> 정비 포함 상품 선택 시 차량 정기 점검, 소모품 교체 등을 리스 업체에서 대행해 주어 차량 관리에 신경 쓸 필요가 없습니다.</li>
+                        <li><strong>일반 번호판 사용:</strong> 장기렌트와 달리 일반 번호판을 사용하므로 차량 외관상 리스 차량임을 알 수 없어 심리적 만족도가 높습니다.</li>
+                    </ul>
+                    <h4>단점 (Drawbacks)</h4>
+                    <ul>
+                        <li><strong>만기 시 인수 비용:</strong> 계약 만기 시 차량을 인수하려면 잔존가치를 지불해야 합니다. 차량을 반납할 경우 차량 가액보다 많은 금액을 지불했을 수도 있어 장기적인 관점에서 불리할 수 있습니다.</li>
+                        <li><strong>중도 해지 위약금:</strong> 계약 기간 내 해지 시 위약금이 발생합니다. 중도 해지 수수료는 리스 상품에 따라 다르지만 보통 남은 리스료의 일정 비율을 청구하므로 신중한 결정이 필요합니다.</li>
+                        <li><strong>보험료 상승:</strong> 개인 보험 경력이 단절되지 않는 장점이 있지만, 만약 사고 이력이 있다면 다음 해 리스료에 보험료가 반영되어 상승할 수 있습니다.</li>
+                    </ul>
+                </div>
+                <!-- Pexels Image for visual appeal -->
+                <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="고급차 이미지">
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 3: Pricing and Quotation Guide -->
+        <section id="price-guide">
+            <h2>장기리스 가격 및 견적 분석 (2026년 예상 비용 가이드)</h2>
+            <p><strong>자동차장기리스 비용</strong>은 단순히 월 납입료만으로 결정되지 않습니다. 차량의 종류, 계약 기간, 주행거리 제한, 보증금 유무, 그리고 잔존가치 설정 등 다양한 요소들이 <strong>장기리스 금액</strong>을 결정합니다. 2026년도 신차 모델의 <strong>평균 리스 가격</strong>은 초기 견적 시 꼼꼼한 비교가 필요합니다.</p>
+
+            <h3>1. 장기리스 견적을 결정하는 5가지 핵심 요소</h3>
+            <ol>
+                <li><strong>차량 모델 및 옵션:</strong> 차량의 출고가(차량가액)가 높을수록 <strong>월 리스료</strong>가 높아집니다. 인기 있는 모델이나 고급 옵션이 추가될 경우 <strong>견적</strong>이 상승합니다.</li>
+                <li><strong>계약 기간 (Term):</strong> 일반적으로 계약 기간이 길어질수록 월 리스료는 저렴해집니다. 24개월, 36개월, 48개월, 60개월 등 다양한 기간을 선택할 수 있습니다.</li>
+                <li><strong>주행거리 제한:</strong> 연간 주행거리 제한(1만km, 2만km, 무제한 등)을 넘길 경우 만기 시 추가 비용이 발생합니다. 주행거리가 길수록 <strong>리스 가격</strong>이 상승하므로 운행 패턴에 맞춰 설정해야 합니다.</li>
+                <li><strong>잔존가치 (Residual Value):</strong> 계약 만기 시 차량의 예상 중고차 가치입니다. 잔존가치를 높게 설정할수록 월 리스료는 낮아지지만, 만기 시 인수 비용이 증가합니다.</li>
+                <li><strong>초기 비용 (보증금/선수금):</strong> 보증금(계약 종료 후 반환)을 납부하거나 선수금(월 납입료에서 차감)을 납부하면 월 리스료가 절감됩니다. <strong>초기 비용 0원</strong> 상품도 있으나, 월 납입료가 상대적으로 높습니다.</li>
+            </ol>
+
+            <h3>2. 2026년 주요 차종별 예상 장기리스 비용 (대략적인 <strong>평균 금액</strong>)</h3>
+            <p>아래 표는 2026년 기준, 48개월 계약, 연간 주행거리 2만km 조건에서 산출된 대략적인 <strong>월 리스료</strong>입니다. 정확한 <strong>예상 비용</strong>은 실시간 프로모션과 금리 변동에 따라 달라질 수 있으므로 반드시 <strong>견적 문의</strong>가 필요합니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="table-header" colspan="4">2026년 신차 장기리스 월 납입료 예시 (48개월 기준)</th>
+                    </tr>
+                    <tr>
+                        <th>차종 분류</th>
+                        <th>대표 모델 (예시)</th>
+                        <th>보증금 30% 조건 (월)</th>
+                        <th>무보증 조건 (월)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>경차/소형차</td>
+                        <td>캐스퍼, 아반떼</td>
+                        <td>30만원대 초반</td>
+                        <td>40만원대 초반</td>
+                    </tr>
+                    <tr>
+                        <td>준중형/중형 세단</td>
+                        <td>K5, 쏘나타</td>
+                        <td>40만원대 중반</td>
+                        <td>50만원대 중후반</td>
+                    </tr>
+                    <tr>
+                        <td>SUV/RV</td>
+                        <td>스포티지, 쏘렌토</td>
+                        <td>50만원대 후반</td>
+                        <td>60만원대 후반</td>
+                    </tr>
+                    <tr>
+                        <td>수입 엔트리</td>
+                        <td>BMW 3시리즈, 벤츠 C클래스</td>
+                        <td>70만원대 후반</td>
+                        <td>90만원대 초반</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>저렴한 장기리스</strong>를 찾는 팁은 여러 캐피탈사의 <strong>견적</strong>을 동시에 비교하는 것입니다. 각 업체별로 주력하는 차종이 다르므로, 특정 모델에서는 예상보다 훨씬 <strong>싼곳</strong>이 있을 수 있습니다. 저희 플랫폼을 통해 최저가 <strong>비교견적</strong>을 받아보세요.</p>
+        </section>
+
+        <hr>
+
+        <!-- Section 4: Customer Reviews (Internal) -->
+        <section id="reviews">
+            <h2>고객 후기 및 추천 (내돈내산 실제 후기)</h2>
+            <p>많은 고객님들이 저희 '장기리스 견적닷컴'을 <strong>자동차리스 전문 업체</strong>로 <strong>추천</strong>해 주셨습니다. 특히 <strong>내돈내산 후기</strong>를 통해 투명한 <strong>가격</strong> 공개와 꼼꼼한 서비스에 만족감을 표현해 주셨습니다. 저희는 고객의 신뢰를 바탕으로 성장합니다.</p>
+            <div class="review-list">
+                <blockquote cite="https://yourdomain.com/review/1">
+                    <p>"복잡한 <strong>장기리스</strong> 계약 조건 때문에 고민이 많았습니다. 여러 <strong>업체</strong>를 <strong>비교</strong>해 봤지만, 여기만큼 꼼꼼하게 <strong>장단점</strong>을 설명해 주는 곳은 없었습니다. 덕분에 가장 합리적인 조건으로 <strong>신차</strong>를 출고할 수 있었습니다. <strong>추천</strong>합니다!"</p>
+                    <footer>— <span>개인사업자 김OO 고객님</span>, 기아 K8 리스 후기</footer>
+                </blockquote>
+                <blockquote cite="https://yourdomain.com/review/2">
+                    <p>"<strong>장기렌트</strong>와 <strong>장기리스</strong> 중 무엇을 선택할지 망설였는데, <strong>차이점</strong>을 명확하게 설명해 주셔서 제 상황에 맞는 리스를 선택했습니다. <strong>가격</strong>도 <strong>저렴한곳</strong>이라 매우 만족합니다. 다음에도 이용할 예정입니다."</p>
+                    <footer>— <span>법인 이사 박OO 고객님</span>, 벤츠 E클래스 리스 후기</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 5: FAQ (Frequently Asked Questions) -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p><strong>자동차장기리스</strong>와 관련하여 고객님들이 가장 궁금해하는 질문들을 모아 답변해 드립니다. <strong>신규 가입</strong> 전 반드시 확인하여 <strong>혜택</strong>을 놓치지 않도록 하세요.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q1. 2026년 기준으로 <strong>개인사업자 장기리스</strong>의 세금 혜택은 어떻게 되나요?</dt>
+                <dd>A. 2026년 현행 세법에 따르면 개인사업자 및 법인사업자는 업무용 승용차 관련 비용(리스료, 보험료, 유류비 등)을 연간 1,500만원까지 비용처리할 수 있습니다. 차량당 1,500만원 한도로 비용 처리가 가능하며, 운행일지를 작성해야 합니다. 자세한 세무 상담은 전문가와 상의하시기 바랍니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q2. <strong>장기리스 초기 비용 0원</strong> 상품은 정말로 초기 비용이 없나요?</dt>
+                <dd>A. 네, <strong>무보증 리스</strong> 상품의 경우 초기 비용이 전혀 발생하지 않습니다. 다만, 리스 업체에서는 보증금 대신 보증보험 가입을 요구하거나, 초기 납입료가 상대적으로 높게 책정될 수 있습니다. 고객님의 신용도에 따라 조건이 달라지므로 <strong>견적</strong>을 받아보시는 것이 좋습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q3. <strong>장기리스 중도 해지</strong> 시 위약금은 얼마나 발생하나요?</dt>
+                <dd>A. <strong>장기리스</strong>는 계약 기간 동안 리스료를 납부하는 조건이므로 중도 해지 시 위약금이 발생합니다. 일반적으로 남은 리스료의 일정 비율(보통 20~40%)이 청구되며, 계약 기간이 짧게 남았을수록 위약금 부담이 줄어듭니다. 중도 해지 페널티를 줄이는 방법으로 '승계'를 고려해 볼 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q4. 만기 시 차량 <strong>인수</strong>와 <strong>반납</strong> 중 어떤 것이 유리한가요?</dt>
+                <dd>A. 만기 시 <strong>인수</strong>는 차량의 <strong>잔존가치</strong>를 지불하고 소유권을 가져오는 것입니다. 차량을 오래 탈 계획이거나, 중고차 시세가 잔존가치보다 높을 경우 유리합니다. 반면, 만기 시 <strong>반납</strong>은 차량을 리스사에 돌려주는 것으로, 새로운 차량으로 교체하고 싶거나 중고차 시세가 잔존가치보다 낮을 경우 유리합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">Q5. <strong>장기리스</strong>와 <strong>할부 구매</strong>의 <strong>차이점</strong>은 무엇이며, 어떤 것이 <strong>저렴한</strong>가요?</dt>
+                <dd>A. <strong>장기리스</strong>는 금융 상품으로 차량의 소유권은 리스사에 있습니다. <strong>할부 구매</strong>는 차량의 소유권이 구매자에게 있습니다. 단순한 <strong>금액</strong> 비교만으로는 어느 것이 더 <strong>저렴한</strong>지 판단하기 어렵습니다. 사업자라면 세금 혜택을 고려하여 리스가 유리할 수 있고, 개인이라면 할부 구매가 장기적으로 총비용이 적을 수 있습니다. 고객님의 운행 패턴, 재무 상황, 세금 혜택을 종합적으로 분석하여 결정해야 합니다.</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <!-- Section 6: User Engagement Form -->
+        <section id="contact">
+            <h2>빠른 장기리스 견적 문의하기</h2>
+            <p><strong>자동차장기리스</strong>를 고민하고 있다면, 1분 안에 <strong>무료 견적</strong>을 받아보세요. <strong>장기리스</strong> <strong>비용</strong>과 <strong>혜택</strong>을 상세히 비교하여 고객님께 최적의 <strong>상품</strong>을 <strong>추천</strong>해 드립니다. <strong>신규 가입</strong> 고객에게는 특별 <strong>할인</strong> 및 <strong>사은품</strong> <strong>현금지원</strong> <strong>혜택</strong>을 제공합니다.</p>
+
+            <form action="#" method="post" class="contact-form">
+                <p><strong>개인정보 수집 및 이용 동의</strong>: 견적 상담을 위해 개인정보 수집 및 이용에 동의합니다.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <label style="flex: 1;">
+                        희망 차량 모델 (예: K5, 벤츠 E클래스)
+                        <input type="text" name="car_model" placeholder="차종을 입력해 주세요" required>
+                    </label>
+                    <label style="flex: 1;">
+                        희망 계약 기간 (예: 36개월, 48개월)
+                        <select name="lease_term" required>
+                            <option value="">기간 선택</option>
+                            <option value="24">24개월</option>
+                            <option value="36">36개월</option>
+                            <option value="48">48개월</option>
+                            <option value="60">60개월</option>
+                        </select>
+                    </label>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <label style="flex: 1;">
+                        고객 구분
+                        <select name="customer_type" required>
+                            <option value="">선택</option>
+                            <option value="personal">개인</option>
+                            <option value="business">개인사업자</option>
+                            <option value="corporate">법인사업자</option>
+                        </select>
+                    </label>
+                    <label style="flex: 1;">
+                        초기 비용 조건 (보증금/선수금)
+                        <select name="initial_cost_type" required>
+                            <option value="">선택</option>
+                            <option value="zero">초기 비용 0원</option>
+                            <option value="deposit">보증금 납부</option>
+                            <option value="prepayment">선수금 납부</option>
+                        </select>
+                    </label>
+                </div>
+                <label>
+                    연락처 (전화번호)
+                    <input type="tel" name="phone_number" placeholder="예: 010-1234-5678" required>
+                </label>
+                <label>
+                    추가 요청 사항
+                    <textarea name="additional_info" rows="3" placeholder="궁금한 점이나 특별히 원하는 조건을 남겨주세요."></textarea>
+                </label>
+                <button type="submit">무료 견적 요청하기</button>
+            </form>
+            <p style="text-align: center; font-size: 0.9rem; margin-top: 1rem;">전화 문의: <a href="tel:010-1234-5678" style="font-weight: 700;">010-1234-5678</a></p>
+        </section>
+
+        <hr>
+
+        <!-- Section 7: External Links and Additional Resources -->
+        <section class="additional-info">
+            <h2>관련 정보 및 신뢰할 수 있는 외부 자료</h2>
+            <p><strong>자동차장기리스</strong> 관련 최신 정보와 규정은 지속적으로 업데이트됩니다. 아래 공신력 있는 기관의 자료를 참고하여 정확한 정보를 확인하세요.</p>
+            <ul>
+                <li><a href="https://www.fss.or.kr/" target="_blank">금융감독원 (FSS)</a>: 금융 상품 관련 소비자 유의사항 및 리스 상품 관련 정보를 확인하세요.</li>
+                <li><a href="https://www.nts.go.kr/" target="_blank">국세청 (NTS)</a>: 사업자 차량 리스료 비용처리 기준 및 세법 개정 사항을 확인하세요.</li>
+                <li><a href="https://namu.wiki/w/%EC%9E%A5%EA%B8%B0%EB%A6%AC%EC%8A%A4" target="_blank">나무위키 - 장기리스</a>: 장기리스의 개념, 역사, 장단점 등 상세한 정보 제공.</li>
+                <li><a href="https://www.korea.kr/" target="_blank">대한민국 정책브리핑</a>: 정부 정책에 따른 자동차 관련 규제 및 혜택 정보.</li>
+            </ul>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('dl dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+          // 닫기/열기 시 내용이 바로 보이도록 스크롤 이동
+          if (expanded) {
+            dt.nextElementSibling.style.display = 'none';
+          } else {
+            dt.nextElementSibling.style.display = 'block';
+          }
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+    </script>
+  
